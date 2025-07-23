@@ -1,0 +1,188 @@
+:root {
+  --red: #e62b1e;
+  --black: #181818;
+  --white: #fff;
+  --shadow-red: 0 0 42px 8px rgba(230, 43, 30, 0.70);
+}
+
+/* Reset */
+* { box-sizing: border-box; }
+
+body {
+  background: #000;
+  margin: 0;
+  color: #fff;
+  font-family: 'Segoe UI', 'Montserrat', Arial, sans-serif;
+  min-height: 100vh;
+}
+
+/* Layout containers */
+.main-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Left logo pane for desktop */
+.left-pane {
+  flex: 1 1 40%;
+  background: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-left: 6vw;
+  box-shadow: 8px 0 30px var(--shadow-red);
+}
+
+.logo {
+  width: 70%;
+  max-width: 500px;
+  min-width: 600px;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 0 38px #e62b1e99);
+  margin-left: 100px;
+  margin-bottom: 20px;
+}
+
+/* Right pane, anchored right on large screens */
+.right-pane {
+  flex: 1 1 60%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  background: linear-gradient(110deg, #181818 83%, #e62b1e18 100%);
+  padding-right: 6vw;
+  min-height: 100vh;
+}
+
+/* Wider, balanced form container */
+.form-container {
+  background: #18181c;
+  border-radius: 20px;
+  box-shadow: 0 10px 90px #e62b1e33, 0 0 7px #0008;
+  padding: 50px 50px 40px 50px;
+  width: 650px;
+  max-width: 94vw;
+  min-width: 370px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.form-container h1 {
+  color: #fff;
+  font-weight: 900;
+  letter-spacing: 2px;
+  font-size: 2.3rem;
+  text-align: center;
+  text-shadow: 0 0 18px #e62b1e;
+  margin-bottom: 36px;
+  text-transform: uppercase;
+}
+.form-container h4 {
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 2px;
+  font-size: 1rem;
+  text-align: center;
+  text-shadow: 0 0 18px #e62b1e;
+  margin-bottom: 36px;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin: 0 0 7px 7px;
+  font-weight: 600;
+  color: #e62b1e;
+  font-size: 1.05rem;
+  text-shadow: 0 0 3px #e62b1e44;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 13px 14px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.09rem;
+  background: #202024;
+  color: #fff;
+  box-shadow: 0 2px 13px #e62b1e11;
+  outline: none;
+  transition: box-shadow 0.2s, background 0.2s, color 0.2s;
+}
+textarea { min-height: 130px; font-family: inherit; }
+input:focus, select:focus, textarea:focus {
+  background: #181818;
+  box-shadow: 0 0 13px #e62b1e77;
+}
+
+button {
+  margin-top: 12px;
+  padding: 13px;
+  background: var(--red);
+  color: #fff;
+  border: none;
+  font-size: 1.15rem;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 0 14px #e62b1e77;
+  letter-spacing: 1.1px;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+button:hover { background: #b21810; }
+
+.error {
+  color: #ffc2c2;
+  min-height: 18px;
+  font-size: 0.95rem;
+  margin-bottom: 2px;
+}
+
+#thank-you {
+  margin-top: 24px;
+  font-size: 1.15rem;
+  color: #19e67b;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 0 0 8px #51e62b44;
+}
+
+.hidden { display: none; }
+
+
+/* Responsive: vertical stack on mobile/tablet */
+@media (max-width: 1024px) {
+  .main-layout { flex-direction: column; }
+  .left-pane, .right-pane {
+    width: 100%;
+    min-width: 0;
+    min-height: unset;
+    box-shadow: none;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+  }
+  .left-pane { padding: 32px 0 0 0; }
+  .logo { width: 53vw; max-width: 290px; min-width: 90px; margin: 0 auto 0 auto; }
+  .right-pane { padding: 0 0 30px 0; }
+  .form-container { 
+    padding: 36px 6vw 22px 6vw; 
+    width: 98vw; 
+    min-width: unset;
+    max-width: 99vw; 
+  }
+  .form-container h1 { font-size: 1.3rem; margin-bottom: 22px; }
+}
+@media (max-width: 600px) {
+  .form-container { padding: 25px 2.5vw 25px 2.5vw; margin: 10px; }
+  .logo { width: 70vw; max-width: 98vw; margin-bottom: 20px; }
+  label, input, select, textarea { font-size: 0.97rem; }
+  button { font-size: 0.99rem; padding: 10px; }
+}

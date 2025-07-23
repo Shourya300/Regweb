@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Volunteer Registration | TEDxNIITUniversity</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="main-layout">
+    <aside class="left-pane">
+      <img src="../images/logo-rights.webp" alt="TEDxNIITUniversity Logo" class="logo" />
+    </aside>
+    <main class="right-pane">
+      <div class="form-container">
+        <h1>Volunteer Registration</h1>
+        <h4>Welcome to TEDxNIITUniversity'26!</h4>
+        <form id="volunteer-form" autocomplete="off" novalidate>
+          <label for="name">Full Name*</label>
+          <input type="text" id="name" name="name" placeholder="Your full name" required />
+          <span class="error" id="nameError"></span>
+
+          <label for="enrollment">Enrollment Number*</label>
+          <input type="text" id="enrollment" name="enrollment" placeholder="Enrollment number" required />
+          <span class="error" id="enrollmentError"></span>
+
+          <label for="email">College Email*</label>
+          <input type="email" id="email" name="email" placeholder="Your @st.niituniversity.in email" required />
+          <span class="error" id="emailError"></span>
+
+          <label for="mobile">Mobile Number*</label>
+          <input type="text" id="mobile" name="mobile" placeholder="10-digit mobile number" required maxlength="10" />
+          <span class="error" id="mobileError"></span>
+
+          <label for="preferredTeam">Preferred Team*</label>
+          <select id="preferredTeam" name="preferredTeam" required>
+            <option value="">Select a team</option>
+            <option value="capture">Capture</option>
+            <option value="creative">Creative</option>
+            <option value="design">Design</option>
+            <option value="curation">Editorial & Curation</option>
+            <option value="marketing">Marketing</option>
+            <option value="production">Production</option>
+            <option value="sponsorship">Sponsorship</option>
+            <option value="technical">Technical</option>
+          </select>
+          <span class="error" id="teamError"></span>
+
+          <label for="reason">Why do you want to join this team?*</label>
+          <textarea id="reason" name="reason" placeholder="Share your motivation..." rows="6" required></textarea>
+          <span class="error" id="reasonError"></span>
+
+          <button type="submit">Submit</button>
+        </form>
+        <div id="thank-you" class="hidden">Thank you for registering! 🎉</div>
+      </div>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
