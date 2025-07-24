@@ -186,3 +186,13 @@ button:hover { background: #b21810; }
   label, input, select, textarea { font-size: 0.97rem; }
   button { font-size: 0.99rem; padding: 10px; }
 }
+#name{
+  text-transform: uppercase;
+  font-size: 1.05rem;
+}
+input::placeholder,
+textarea::placeholder {
+  text-transform: none;
+  font-size: 1.09rem;
+}
+
