@@ -1,19 +1,60 @@
 const form = document.getElementById('volunteer-form');
 
-// === Helper Functions ===
+// === Place your Google Apps Script Web App URL here ===
+const scriptURL = 'https://script.google.com/macros/s/AKfycbwO7JQheoZybsVPi2hc1AjrqaAJZ7W2Jq7ncYgywT_qaMgTj-i1ceHbmuLuEJPhmebu/exec';
+
+// Helper array for team options; used to manage dropdown disabling
+const TEAMS = [
+  "capture",
+  "creative",
+  "design",
+  "curation",
+  "marketing",
+  "production",
+  "sponsorship",
+  "technical"
+];
+
+// Display error message for a field by ID
 function showError(id, message) {
   document.getElementById(id).textContent = message;
 }
 
+// Clear all error messages
 function clearErrors() {
   document.querySelectorAll('.error').forEach(el => el.textContent = '');
 }
 
+// Update the options of team preference dropdowns to avoid duplicates
+function updateTeamPreferences() {
+  const pref1 = document.getElementById('teamPref1').value;
+  const pref2 = document.getElementById('teamPref2').value;
+
+  setTeamOptions('teamPref2', pref1 ? [pref1] : []);
+  setTeamOptions('teamPref3', [pref1, pref2].filter(Boolean));
+}
+
+// Enable/disable options in a select element based on exclusions
+function setTeamOptions(selectId, excludeArr) {
+  const select = document.getElementById(selectId);
+  const currentValue = select.value;
+
+  Array.from(select.options).forEach(opt => {
+    if (!opt.value) return; // Skip placeholder options
+    opt.disabled = excludeArr.includes(opt.value);
+  });
+
+  // Reset if currently selected value is disabled
+  if (excludeArr.includes(currentValue)) {
+    select.value = '';
+  }
+}
+
+// Validate the form fields including team preferences
 function validate() {
   clearErrors();
   let valid = true;
 
-  // Name: Required, only letters+spaces
   const name = form.name.value.trim();
   if (!name) {
     showError('nameError', 'Name is required.');
@@ -23,7 +64,6 @@ function validate() {
     valid = false;
   }
 
-  // Enrollment: Required, alphanumeric only
   const enrollment = form.enrollment.value.trim();
   if (!enrollment) {
     showError('enrollmentError', 'Enrollment is required.');
@@ -33,7 +73,6 @@ function validate() {
     valid = false;
   }
 
-  // Email: Required, must end with @st.niituniversity.in
   const email = form.email.value.trim();
   if (!email) {
     showError('emailError', 'Email is required.');
@@ -43,7 +82,6 @@ function validate() {
     valid = false;
   }
 
-  // Mobile: Required, exactly 10 digits
   const mobile = form.mobile.value.trim();
   if (!mobile) {
     showError('mobileError', 'Mobile number is required.');
@@ -53,13 +91,25 @@ function validate() {
     valid = false;
   }
 
-  // Preferred team required
-  if (!form.preferredTeam.value) {
-    showError('teamError', 'Please select a team.');
+  const team1 = form.teamPref1.value;
+  const team2 = form.teamPref2.value;
+  const team3 = form.teamPref3.value;
+
+  if (!team1) {
+    showError('teamPref1Error', 'Please select your first preference.');
     valid = false;
   }
 
-  // Reason: required, min length 10
+  if (team2 && team2 === team1) {
+    showError('teamPref2Error', 'Second preference must differ from first.');
+    valid = false;
+  }
+
+  if (team3 && (team3 === team1 || team3 === team2)) {
+    showError('teamPref3Error', 'Third preference must differ from above.');
+    valid = false;
+  }
+
   const reason = form.reason.value.trim();
   if (!reason) {
     showError('reasonError', 'Please share your reason.');
@@ -72,31 +122,43 @@ function validate() {
   return valid;
 }
 
-// === Google Apps Script Web App URL ===
-const scriptURL = 'https://script.google.com/macros/s/AKfycbw7AVy8vmW6Z90sjR3VggVY9uIsAnxUJu1DnIgVkIV279JtDv89_QYjLXy_55OTjcjK/exec'; // <-- PUT YOUR APPS SCRIPT WEB APP URL HERE
+// Attach change event listeners on team preferences for disabling duplicate options
+['teamPref1', 'teamPref2'].forEach(id => {
+  document.getElementById(id).addEventListener('change', updateTeamPreferences);
+});
 
+// On page load, initialize dropdown option states
+window.addEventListener('DOMContentLoaded', updateTeamPreferences);
+
+// Handle the form submission
 form.addEventListener('submit', async function(e) {
   e.preventDefault();
 
   if (!validate()) return;
 
-  // Prepare data to send to Google Apps Script
   const formData = new FormData(form);
 
-  // All your old UI actions are kept:
-  const thankYou = document.getElementById('thank-you');
-
   try {
-    // Send data to Google Sheet via Apps Script web app
-    await fetch(scriptURL, { method: 'POST', body: formData });
+    // Send POST request to Google Apps Script to log data into Google Sheets
+    await fetch(scriptURL, {
+      method: 'POST',
+      body: formData
+    });
 
-    // Show thank you message and reset as before
+    // Show thank you message and reset form
+    const thankYou = document.getElementById('thank-you');
     thankYou.classList.remove('hidden');
     form.reset();
+
+    // Reset team preferences disables after reset
+    updateTeamPreferences();
+
     setTimeout(() => {
       thankYou.classList.add('hidden');
     }, 3500);
+
   } catch (error) {
     alert('There was an error submitting your form. Please try again.');
+    console.error('Form submission error:', error);
   }
 });

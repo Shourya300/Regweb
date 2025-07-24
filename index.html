@@ -14,10 +14,10 @@
     <main class="right-pane">
       <div class="form-container">
         <h1>Volunteer Registration</h1>
-        <h4>Welcome to TEDxNIITUniversity'26!</h4>
         <form id="volunteer-form" autocomplete="off" novalidate>
           <label for="name">Full Name*</label>
           <input type="text" id="name" name="name" placeholder="Your full name" required />
+
           <span class="error" id="nameError"></span>
 
           <label for="enrollment">Enrollment Number*</label>
@@ -29,12 +29,12 @@
           <span class="error" id="emailError"></span>
 
           <label for="mobile">Mobile Number*</label>
-          <input type="text" id="mobile" name="mobile" placeholder="10-digit mobile number" required maxlength="10" />
+          <input type="text" id="mobile" name="mobile" placeholder="10-digit mobile number" maxlength="10" required />
           <span class="error" id="mobileError"></span>
 
-          <label for="preferredTeam">Preferred Team*</label>
-          <select id="preferredTeam" name="preferredTeam" required>
-            <option value="">Select a team</option>
+          <label for="teamPref1">Team Preference 1*</label>
+          <select id="teamPref1" name="teamPref1" required>
+            <option value="">Select team</option>
             <option value="capture">Capture</option>
             <option value="creative">Creative</option>
             <option value="design">Design</option>
@@ -44,7 +44,35 @@
             <option value="sponsorship">Sponsorship</option>
             <option value="technical">Technical</option>
           </select>
-          <span class="error" id="teamError"></span>
+          <span class="error" id="teamPref1Error"></span>
+
+          <label for="teamPref2">Team Preference 2</label>
+          <select id="teamPref2" name="teamPref2">
+            <option value="">Select team</option>
+            <option value="capture">Capture</option>
+            <option value="creative">Creative</option>
+            <option value="design">Design</option>
+            <option value="curation">Editorial & Curation</option>
+            <option value="marketing">Marketing</option>
+            <option value="production">Production</option>
+            <option value="sponsorship">Sponsorship</option>
+            <option value="technical">Technical</option>
+          </select>
+          <span class="error" id="teamPref2Error"></span>
+
+          <label for="teamPref3">Team Preference 3</label>
+          <select id="teamPref3" name="teamPref3">
+            <option value="">Select team</option>
+            <option value="capture">Capture</option>
+            <option value="creative">Creative</option>
+            <option value="design">Design</option>
+            <option value="curation">Editorial & Curation</option>
+            <option value="marketing">Marketing</option>
+            <option value="production">Production</option>
+            <option value="sponsorship">Sponsorship</option>
+            <option value="technical">Technical</option>
+          </select>
+          <span class="error" id="teamPref3Error"></span>
 
           <label for="reason">Why do you want to join this team?*</label>
           <textarea id="reason" name="reason" placeholder="Share your motivation..." rows="6" required></textarea>
