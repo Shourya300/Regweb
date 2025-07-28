@@ -193,6 +193,6 @@ button:hover { background: #b21810; }
 input::placeholder,
 textarea::placeholder {
   text-transform: none;
-  font-size: 0.9rem;
+  font-size: 0.5rem;
 }
 
