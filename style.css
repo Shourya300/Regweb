@@ -178,13 +178,13 @@ button:hover { background: #b21810; }
     min-width: unset;
     max-width: 99vw; 
   }
-  .form-container h1 { font-size: 1.3rem; margin-bottom: 30px; margin-top: 0; margin-left: 10px; margin-right: 10px; }
+  .form-container h1 { font-size: 1.3rem; margin-bottom: 22px; margin-top: 0; margin-left: 10px; margin-right: 10px;}
+}
 @media (max-width: 600px) {
   .form-container { padding: 25px 2.5vw 25px 2.5vw; margin: 10px; }
   .logo { width: 70vw; max-width: 98vw; margin-bottom: 20px; }
   label, input, select, textarea { font-size: 0.97rem; }
   button { font-size: 0.99rem; padding: 10px; }
-
 }
 #name{
   text-transform: uppercase;
@@ -193,6 +193,6 @@ button:hover { background: #b21810; }
 input::placeholder,
 textarea::placeholder {
   text-transform: none;
-  font-size: 1.09rem;
+  font-size: 0.9rem;
 }
-}
+
