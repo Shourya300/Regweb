@@ -179,6 +179,11 @@ button:hover { background: #b21810; }
     max-width: 99vw; 
   }
   .form-container h1 { font-size: 1.3rem; margin-bottom: 22px; margin-top: 0; margin-left: 10px; margin-right: 10px;}
+  input::placeholder,
+  textarea::placeholder {
+  text-transform: none;
+  font-size: 0.5rem;
+  } 
 }
 @media (max-width: 600px) {
   .form-container { padding: 25px 2.5vw 25px 2.5vw; margin: 10px; }
@@ -193,6 +198,6 @@ button:hover { background: #b21810; }
 input::placeholder,
 textarea::placeholder {
   text-transform: none;
-  font-size: 0.5rem;
+  font-size: 1.09rem;
 }
 
