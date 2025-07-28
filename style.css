@@ -178,8 +178,7 @@ button:hover { background: #b21810; }
     min-width: unset;
     max-width: 99vw; 
   }
-  .form-container h1 { font-size: 1.3rem; margin-bottom: 30px; margin-top: 0; }
-}
+  .form-container h1 { font-size: 1.3rem; margin-bottom: 30px; margin-top: 0; margin-left: 10px; margin-right: 10px; }
 @media (max-width: 600px) {
   .form-container { padding: 25px 2.5vw 25px 2.5vw; margin: 10px; }
   .logo { width: 70vw; max-width: 98vw; margin-bottom: 20px; }
